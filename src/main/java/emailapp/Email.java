@@ -1,5 +1,7 @@
 package emailapp;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class Email {
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("new Employee: " + this.firstName + "" + this.lastName);
+        System.out.println("new Employee: " + this.firstName + " " + this.lastName);
 
         // Calling methods
         this.dept = this.setDept();
@@ -96,33 +98,71 @@ public class Email {
             } else if (choice == 'N' || choice == 'n') {
                 flag = true;
                 System.out.println("Password changed option cancelled!");
-            }
-            else {
+            } else {
                 System.out.println("Enter Valid choice!");
             }
-        }while (!flag);
+        } while (!flag);
     }
+
     // Set mailbox capacity method
-    public void setMailCapacity(){
-        System.out.println("Current capacity = "+this.mailCapacity +"mb");
+    public void setMailCapacity() {
+        System.out.println("Current capacity = " + this.mailCapacity + "mb");
         System.out.println("Enter new mailbox capacity: ");
         this.mailCapacity = scan.nextInt();
         System.out.println("Mailbox capacity successfully changed!");
     }
+
     // Set alternate
-    public void alternateEmail(){
+    public void alternateEmail() {
         System.out.println("Enter new alternate mail: ");
         this.alterEmail = scan.next();
         System.out.println("Alternate email is set");
     }
-    // Display user information method
-    public void getInfo(){
-        System.out.println("New: "+this.firstName+" "+this.lastName);
-        System.out.println("Department: " +this.dept);
-        System.out.println("Email: "+this.email);
-        System.out.println("Password: "+this.password);
-        System.out.println("Mailbox capacity"+this.mailCapacity+"mb");
-        System.out.println("Alternate mail" +this.alterEmail);
 
+    // Display user information method
+    public void getInfo() {
+        System.out.println("New: " + this.firstName + " " + this.lastName);
+        System.out.println("Department: " + this.dept);
+        System.out.println("Email: " + this.email);
+        System.out.println("Password: " + this.password);
+        System.out.println("Mailbox capacity: " + this.mailCapacity + " mb");
+        System.out.println("Alternate mail: " + this.alterEmail);
+
+    }
+
+    // Store in File
+    public void storeFile() {
+        try {
+            FileWriter in = new FileWriter("C:\\Users\\ahmed\\Desktop\\info.txt");
+            in.write("First name:" + this.firstName);
+            in.append("\nLast name:" + this.lastName);
+            in.append("\nEmail:" + this.email);
+            in.append("\nPassword:" + this.password);
+            in.append("\nmail capacity:" + this.mailCapacity);
+            in.append("\nAlternate mail:" + this.alterEmail);
+            in.close();
+            System.out.println("Data Stored...");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
+    }
+
+    // Reading file method
+    public void readFile() {
+        try {
+            FileReader fileReader = new FileReader("C:\\Users\\ahmed\\Desktop\\info.txt");
+            int i;
+            while ((i=fileReader.read())!=-1){
+                System.out.println((char) i);
+            }
+            System.out.println();
+            fileReader.close();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }
