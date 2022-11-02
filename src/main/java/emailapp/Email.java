@@ -155,13 +155,13 @@ public class Email {
         try {
             FileReader fileReader = new FileReader("C:\\Users\\ahmed\\Desktop\\info.txt");
             int i;
-            while ((i=fileReader.read())!=-1){
-                System.out.println((char) i);
+            while ((i = fileReader.read()) != -1) {
+                System.out.print((char) i);
             }
             System.out.println();
             fileReader.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
